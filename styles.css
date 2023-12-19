@@ -46,8 +46,17 @@ body {
 .shell .box:hover {
     flex: 2;
 }
+.shell a {
+    text-decoration: none; /* 移除链接的下划线 */
+    color: inherit; /* 保持原有字体颜色 */
+}
+
+.shell a:hover {
+    text-decoration: none; /* 鼠标悬停时移除链接的下划线 */
+}
+
 /* 手机和小屏幕设备 */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 670px) {
     .shell {
         flex-direction: column;
         height: auto;
