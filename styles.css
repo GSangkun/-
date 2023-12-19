@@ -1,0 +1,90 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #DEE7F4;
+}
+
+.shell {
+    width: 90%;
+    height: 700px;
+    display: flex;
+}
+
+.box {
+    flex: 1;
+    overflow: hidden;
+    transition: .5s;
+    margin: 0 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, .5);
+    border-radius: 20px;
+    border: 10px solid #fff;
+    background-color: #fff;
+}
+
+.box > img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.box > span {
+    font: 200 45px '宋体', sans-serif;
+    text-align: center;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hand accordion effect */
+.shell:hover .box {
+    flex: 0.5;
+}
+
+.shell .box:hover {
+    flex: 2;
+}
+
+.shell a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Maintain original font color */
+}
+
+.shell a:hover {
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Mobile and small screen devices */
+@media only screen and (max-width: 670px) {
+    .shell {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .box {
+        margin: 10px 0;
+        flex-basis: auto;
+    }
+
+    .box > img {
+        height: auto;
+    }
+
+    .box > span {
+        font-size: 30px;
+    }
+
+    /* Disable hand accordion effect */
+    .shell:hover .box, 
+    .shell .box:hover {
+        flex: none;
+    }
+}
