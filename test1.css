@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('./A05特雅宋简体.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    font-family: 'MyCustomFont', sans-serif;
+    background-color: #ecf0f3;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 20px;
+
+}
+.container {
+    width: 800px; /* 增加宽度 */
+    
+    background: #fff;
+    padding: 60px; /* 增加内边距 */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: center;
+}
+
+.question {
+    margin-bottom: 20px; /* 增加底部外边距 */
+   
+}
+
+
+
+.title {
+    margin-bottom: 30px; /* 增加底部外边距 */
+    font-weight: normal;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-bottom: 30px; /* 增加底部外边距 */
+}
+.progress-bar {
+    height: 10px;
+    background-color:#2E4AC1;
+    width: 0%;
+    border-radius: 5px;
+}
+
+.options {
+    list-style: none;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* 增加按钮间距 */
+   
+}
+
+.options li {
+    margin: 100px 0; /* 增加按钮上下的外边距 */
+    font-size: 24px;
+}
+
+.options button {
+    width: 110px; /* 调整按钮宽度 */
+    height: 50px; /* 调整按钮高度 */
+    border-radius: 20px; /* 创建圆角矩形效果 */
+    background-color: #2E4AC1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+
+.options button:hover {
+    background-color: #7C97EC;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.navigation button {
+    padding: 10px 25px; /* 调整按钮内边距 */
+    border: none;
+    border-radius: 5px;
+    background-color: #7C97EC;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 15px; /* 增加外边距 */
+    transition: all 0.3s ease;
+    font-family: 'MyCustomFont', sans-serif;
+}
+.navigation button:hover {
+    background-color: #7C97EC;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px; /* 增加顶部外边距 */
+     font-family: 'MyCustomFont', sans-serif;
+}
+#submit {
+    margin: 0 auto; /* 将按钮居中 */
+    display: none; /* 初始时隐藏提交按钮 */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2E4AC1;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+#submit:hover {
+    background-color:#7C97EC;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#chart-container {
+    width: 700px; /* 与容器宽度一致 */
+    height: 376px;
+    margin-top: 20px;
+}

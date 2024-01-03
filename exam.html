@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ChartCube</title>
+    <script src="https://gw.alipayobjects.com/os/lib/antv/g2plot/0.11.3/dist/g2plot.js"></script>
+    <style>
+       @font-face {
+            font-family: 'MyCustomFont';
+            src: url('./A05特雅宋简体.ttf') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+      body {
+        background-color: #ecf0f3;
+        font-family: 'MyCustomFont', sans-serif;
+      }
+
+      #app {
+        width: 600px;
+        background: #fff;
+        padding: 20px;
+        margin: 100px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        text-align: center;
+        font-family: 'MyCustomFont', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+  <div id="app"></div>
+  <script>
+    const container = document.getElementById('app');
+    const data = [
+      {
+        "x": "教学设计能力",
+        "y": 1000
+      },
+      {
+        "x": "视频制作能力",
+        "y": 286
+      },
+      {
+        "x": "计算思维能力（算法、编程）",
+        "y": 994
+      },
+      {
+        "x": "图像制作能力（图像、音频、动画制作）",
+        "y": 245
+      },
+      {
+        "x": "音频制作能力",
+        "y": 831
+      },
+      {
+        "x": "动画制作能力",
+        "y": 555
+      }
+    ];
+    const config = {
+      "title": {
+        "visible": true,
+        "text": "单线雷达图"
+      },
+      "description": {
+        "visible": true,
+        "text": "一个简单的单线雷达图"
+      },
+      "legend": {
+        "flipPage": false
+      },
+      "width": 527,
+      "height": 357,
+      "forceFit": false,
+      "radius": 1,
+      "angleField": "x",
+      "radiusField": "y",
+      "color": [
+        "#5B8FF9"
+      ]
+    }
+    const plot = new g2plot.Radar(container, {
+      data,
+      ...config,
+    });
+    plot.render();
+  </script>
+  </body>
+</html>

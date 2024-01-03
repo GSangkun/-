@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>备赛规划</title>
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('./A05特雅宋简体.ttf') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+
+            font-family: 'MyCustomFont', sans-serif;
+
+        }
+
+        .shell {
+            width: 100%;
+            position: relative;
+            padding: 80px 0;
+            transition: 0.3s ease 0s;
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+
+        .shell:before {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(99, 99, 99, 0.8);
+            content: "";
+
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .title {
+            color: #fff;
+            font-size: 46px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .timeline {
+            display: flex;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            flex-direction: column;
+            max-width: 700px;
+            position: relative;
+
+        }
+
+        .content-title {
+            font-weight: bolder;
+            font-size: 25px;
+            margin: -10px 0 0 0;
+            transition: 0.4s;
+            padding: 0 10px;
+            box-sizing: border-box;
+            color: #ffffff;
+           
+
+        }
+
+        .content-desc {
+            margin: 0;
+            font-size: 20px;
+            box-sizing: border-box;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 25px;
+            background-color: rgb(205, 170, 182);
+            border-radius: 10px;
+            /* 圆角的半径 */
+            padding: 10px;
+            /* 内边距 */
+        }
+
+        .timeline:before {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            margin-left: -1px;
+            content: "";
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .item {
+            padding: 40px 0;
+            opacity: 0.3;
+            filter: blur(2px);
+            transition: 0.5s;
+            box-sizing: border-box;
+            width: calc(50% - 40px);
+            display: flex;
+            position: relative;
+            transform: translateY(-80px);
+
+        }
+
+        .item:before {
+            content: attr(data-text);
+            letter-spacing: 3px;
+            width: 100%;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            border-left: 2px solid rgba(255, 255, 255, 0.5);
+            top: 70%;
+            margin-top: -5px;
+            padding-left: 15px;
+            opacity: 0;
+            right: calc(-100% - 56px);
+            font: 900 20px '';
+            letter-spacing: 5px;
+
+        }
+
+        .item:nth-child(even) {
+            align-self: flex-end;
+
+        }
+
+        .item:nth-child(even):before {
+            right: auto;
+            text-align: right;
+            left: calc(-100% - 56px);
+            padding-left: 0;
+            border-left: none;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            padding-right: 15px;
+
+        }
+
+        .item--active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+
+        }
+
+        .item--active:before {
+            top: 50%;
+            transition: 0.3s all 0.2s;
+            opacity: 1;
+            font-size: 36px;
+
+        }
+
+        .item--active .content-title {
+            margin: -50px 0 20px 0;
+
+        }
+
+        .img {
+            max-width: 100%;
+            border-radius: 10px;
+            /* 圆角的半径 */
+         
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 20px;
+            letter-spacing: 5px;
+            margin: 10px 0 0 0;
+            font-weight: normal;
+
+        }
+
+        .footer {
+            padding: 95px 0;
+            text-align: center;
+
+        }
+
+        .footer a {
+            color: #999;
+            display: inline-block;
+
+        }
+
+        @media only screen and (max-width: 767px) {
+            .item {
+                align-self: baseline !important;
+                width: 100%;
+                padding: 0 30px 150px 80px;
+            }
+
+            .item:before {
+                left: 10px !important;
+                padding: 0 !important;
+                top: 50px;
+                text-align: center !important;
+                width: 60px;
+                border: none !important;
+            }
+
+            .item:last-child {
+                padding-bottom: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .timeline:before {
+                left: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell" id="shell">
+        <div class="header">
+            <h2 class="title">备赛规划</h2>
+            <h3 class="subtitle">数媒赛道</h3>
+        </div>
+        <div class="timeline">
+            <div class="item" data-text="项目准备阶段">
+                <div class="content">
+                    <img src="./img/01.jpg" alt="" class="img">
+                    <h2 class="content-title">今年10月-今年12月</h2>
+                    <p class="content-desc">
+                        • 搜集和整理有关珠算的历史、数学原理、文化内涵和应用方面的资料和信息</br>
+                        • 确定纪录片的主题和核心内容
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="剧本撰写和策划阶段">
+                <div class="content">
+                    <img src="./img/02.jpg" alt="" class="img">
+                    <h2 class="content-title">今年12月-下一年1月</h2>
+                    <p class="content-desc">
+                        • 编写详细的剧本，包括背景介绍、故事情节、对话、旁白等；</br>
+                        • 确定拍摄计划和拍摄场景，制定拍摄脚本；</br>
+                        • 联系相关专家、学者和传承人，进行访谈和拍摄
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="拍摄和制作阶段">
+                <div class="content">
+                    <img src="./img/03.jpg" alt="" class="img">
+                    <h2 class="content-title">下一年1月-下一年3月</h2>
+                    <p class="content-desc">
+                        • 按照拍摄计划进行实地拍摄，包括不同场景、不同角度、不同时间段；</br>
+                        • 进行采访和对话录制，收集相关人员的意见和建议；</br>
+                        • 对拍摄的素材进行初步剪辑和整理。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="后期制作和审核阶段">
+                <div class="content">
+                    <img src="./img/04.jpg" alt="" class="img">
+                    <h2 class="content-title">下一年3月</h2>
+                    <p class="content-desc">
+                        • 对拍摄的素材进行精细剪辑，根据剧本进行特效制作和音效设计；</br>
+                        • 请专业审核人员进行审核和修改，确保影片的质量和准确性；</br>
+                        • 最终完成纪录片的配音、字幕、音乐等后期工作。
+                    </p>
+                </div>
+            </div>
+
+            <div class="item" data-text="推广和发布阶段">
+                <div class="content">
+                    <img src="./img/05.jpg" alt="" class="img">
+                    <h2 class="content-title">下一年3月-下一年4月</h2>
+                    <p class="content-desc">
+                        • 在各大视频平台进行推广和发布，吸引观众的关注和观看；</br>
+                        • 组织相关的宣传活动，如专家讲座、展览、社交媒体推广等；</br>
+                        • 收集观众反馈和建议，为修改完善比赛视频提供参考
+
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+        (function ($) {
+            $.fn.timeline = function () {
+                var selectors = {
+                    id: $(this),
+                    item: $(this).find(".item"),
+                    activeClass: "item--active",
+                    img: ".img"
+                };
+                // 将第一个时间轴项目激活，并设置时间轴背景图片为第一个项目的图片
+                selectors.item.eq(0).addClass(selectors.activeClass);
+                selectors.id.css(
+                    "background-image",
+                    "url(" +
+                    selectors.item.first()
+                        .find(selectors.img)
+                        .attr("src") +
+                    ")"
+                );
+                // 获取时间轴项目的总数
+                var itemLength = selectors.item.length;
+                // 当页面滚动时，触发滚动事件
+                $(window).scroll(function () {
+                    var pos = $(this).scrollTop(); // 获取当前滚动的位置
+                    var lastItemActivated = false; // 用于标识是否已激活最后一个项目
+
+                    // 遍历每一个项目
+                    selectors.item.each(function () {
+                        var min = $(this).offset().top; // 项目的起始位置
+                        var max = $(this).height() + min; // 项目的结束位置
+
+                        // 检查当前滚动位置是否在项目的范围内
+                        if (pos >= min && pos < max) {
+                            selectors.item.removeClass(selectors.activeClass);
+                            $(this).addClass(selectors.activeClass);
+                            selectors.id.css("background-image", "url(" + $(this).find(selectors.img).attr("src") + ")");
+                            lastItemActivated = false;
+                        }
+                    });
+
+                    // 特别处理最后一个项目
+                    var lastItem = selectors.item.last();
+                    if (!lastItemActivated && (pos + $(window).height() >= $(document).height() - 10)) {
+                        selectors.item.removeClass(selectors.activeClass);
+                        lastItem.addClass(selectors.activeClass);
+                        selectors.id.css("background-image", "url(" + lastItem.find(selectors.img).attr("src") + ")");
+                        lastItemActivated = true;
+                    }
+                });
+
+
+            };
+        })(jQuery)
+        /*
+        最后，我们调用 timeline 插件并传入时间轴的 ID 作为参数。
+        这将启用时间轴插件并为该时间轴绑定滚动事件。
+        */
+        $("#shell").timeline();
+
+
+    </script>
+</body>
+
+</html>

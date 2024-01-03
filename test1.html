@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能力测试</title>
+    <script src="https://gw.alipayobjects.com/os/lib/antv/g2plot/0.11.3/dist/g2plot.js"></script>
+    <link rel="stylesheet" href="test1.css">
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>多维能力分析</h1>
+        </div>
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="questions-container"></div>
+        <div class="navigation">
+            <button id="previous-button" onclick="goToPreviousQuestion()" style="display: none;">上一题</button>
+            <button id="next-button" onclick="goToNextQuestion()">下一题</button>
+            <button id="submit-button" onclick="submitTest()" style="display: none;">提交</button>
+        </div>
+
+        <div id="chart-container" style="display:none; width: 560px; height: 376px;">
+            <script src="https://gw.alipayobjects.com/os/lib/antv/g2plot/0.11.3/dist/g2plot.js"></script>
+        </div>
+        <div id="exam"></div>
+    </div>
+
+    <script>
+        let currentQuestionIndex = 0;
+        const questions = [  // 数组
+            {
+                category: "教学设计能力",
+                text: "我擅长挖掘创新的微课选题并可以把这个知识深入浅出地讲给学生。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },   // 每个元素都是对象，options属性是按钮       [{category:"xxxx",text:"xxx",options:"xxxx"},{},{}]  
+            {
+                category: "教学设计能力",
+                text: "我擅长设计微课的各个教学环节并保证各个环节有趣高效。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "教学设计能力",
+                text: "我明确可以结合哪些技术手段设计微课相关教学资源。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            // ... more questions ...
+            {
+                category: "视频制作技术能力",
+                text: "我擅长运用PR、剪映、万彩等软件制作视频。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "视频制作技术能力",
+                text: "我擅长解决视频制作过程中遇到的技术难题。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "视频制作技术能力",
+                text: "我能确保自己视频的质量、视觉效果和音频质量较为优秀。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            // ... more questions ...
+            {
+                category: "计算思维能力",
+                text: "我能理解编程思维与计算思维的核心概念和原理，能够清晰、准确地阐述其中的关键知识点。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "计算思维能力",
+                text: "我熟悉多种编程语言、算法和计算工具，能够灵活运用这些技术手段。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "计算思维能力",
+                text: "我能够运用计算思维解决复杂的问题，具备抽象思维和代码质量意识，注重代码的可读性和可维护性，并能够不断学习和创新，以适应不断变化的环境。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            // ... more questions ...
+            {
+                category: "图像制作能力",
+                text: "我熟练掌握图像、音频、动画制作的相关技术，包括但不限于Photoshop、Adobe Audition等软件，能够熟练运用这些工具进行创作。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "图像制作能力",
+                text: "我具备独特的创意和审美能力，能够创作出具有个性和吸引力的作品，能从不同的角度和视角出发，挖掘出新颖的创意点，并将其转化为具体的作品。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "图像制作能力",
+                text: "我注重作品的细节和品质，具备耐心和细心的工作态度，能够反复修改和完善作品，以达到最佳的效果。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            // ... more questions ...
+            {
+                category: "音频制作能力",
+                text: "我熟练掌握音频制作的相关技术，包括但不限于音频编辑、混音、音效制作等，能够熟练运用专业音频软件进行创作。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "音频制作能力",
+                text: "我擅长声音设计，能够通过音效、环境声、背景音乐等元素的巧妙组合，营造出独特的听觉氛围和情感体验。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "音频制作能力",
+                text: "我具备精湛的后期处理技巧，能够通过剪辑、混音、均衡等手段，使音频作品达到最佳的音质和效果。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            // ... more questions ...
+            {
+                category: "动画制作能力",
+                text: "我熟练掌握动画制作的相关技术，包括但不限于剪映、万彩等，能够熟练运用这些工具进行创作。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "动画制作能力",
+                text: "我具备扎实的动画技巧，包括角色设计、场景设计、动作设计等，能够创作出生动、有趣的动画作品。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            {
+                category: "动画制作能力",
+                text: "我具备精湛的后期处理技巧，能够通过剪辑、特效处理、音效添加等手段，使动画作品达到最佳的视觉和听觉效果。",
+                options: ["擅长", "不清楚", "不擅长"]
+            },
+            // ... more questions ...
+        ];
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = (currentQuestionIndex + 1) / questions.length * 100 + '%';
+        }
+
+        function updateButtonVisibility() {
+            document.getElementById('previous-button').style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+            document.getElementById('next-button').style.display = currentQuestionIndex < questions.length - 1 ? 'inline-block' : 'none';
+            document.getElementById('submit-button').style.display = currentQuestionIndex === questions.length - 1 ? 'inline-block' : 'none';
+        }
+
+
+        function displayQuestion() {
+            const questionContainer = document.getElementById('questions-container');
+            questionContainer.innerHTML = `  
+        <div>  
+            <div>${questions[currentQuestionIndex].text}</div>  
+            <div class="options">  
+                ${questions[currentQuestionIndex].options.map(option => `<button class="option-btn">${option}</button>`).join('')}  
+            </div>  
+        </div>  
+                `;
+            updateProgressBar();
+            updateButtonVisibility();
+
+            // 绑定事件监听器  
+            questionContainer.querySelectorAll('.option-btn').forEach((btn) => {
+                btn.addEventListener('click', handleOptionClick);
+            });
+        }
+
+        // 处理选项点击事件的函数  
+        function handleOptionClick(event) {
+            const selectedOption = event.target.textContent;
+            const selectedBtn = event.target;
+            const allOptions = document.querySelectorAll('.option-btn'); // 获取所有选项按钮元素
+
+
+            // 重置所有按钮的颜色为默认颜色  
+            allOptions.forEach((option) => {
+                option.style.backgroundColor = '#2E4AC1';
+            });
+
+            // 设置被点击的按钮的颜色为特定颜色  
+            selectedBtn.style.backgroundColor = '#7C97EC';
+
+        }
+
+        function goToNextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        function goToPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+        function submitTest() {
+            window.location.href = 'exam.html';
+
+        }
+        displayQuestion(); // Initialize the first question
+
+
+    </script>
+
+</body>
+
+</html>
