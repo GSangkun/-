@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('./A05特雅宋简体.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     padding: 0;
     margin: 0;
+    
 }
 
 body {
@@ -9,6 +16,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #DEE7F4;
+    font-family: 'MyCustomFont', sans-serif;
 }
 
 .shell {
@@ -36,7 +44,8 @@ body {
 }
 
 .box > span {
-    font: 200 45px '宋体', sans-serif;
+    font: 200 45px 'MyCustomFont', sans-serif;
+    font-weight: normal;
     text-align: center;
     height: 15%;
     display: flex;
